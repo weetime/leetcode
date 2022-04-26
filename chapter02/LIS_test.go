@@ -36,7 +36,7 @@ func TestLengthOFLIS(t *testing.T) {
 
 func TestBinarySearchLIS(t *testing.T) {
 	var solution func([]int) int
-	solution = func(nums []int) int {
+solution = func(nums []int) int {
 		var piles int
 		length := len(nums)
 		top := make([]int, length)
