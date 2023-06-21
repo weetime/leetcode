@@ -55,3 +55,19 @@ func TestReverse(t *testing.T) {
 	}
 	t.Log(solution(GetListNode()))
 }
+
+func TestReverse2(t *testing.T) {
+	head := GetListNode()
+	var dfs func(head *ListNode) *ListNode
+	dfs = func(head *ListNode) *ListNode {
+		if head == nil || head.Next == nil {
+			return head
+		}
+		last := dfs(head.Next)
+		head.Next.Next = head
+		head.Next = nil
+		return last
+	}
+	l := dfs(head)
+	t.Log(l)
+}

@@ -1,6 +1,8 @@
 package listnode
 
-import "testing"
+import (
+	"testing"
+)
 
 type ListNode struct {
 	Val  int
@@ -34,18 +36,6 @@ func GetListNode() *ListNode {
 	return node.Next
 }
 
-func TestAddHead(t *testing.T) {
-	l1 := &ListNode{}
-	for i := 0; i < 10; i++ {
-		current := &ListNode{
-			Val: i,
-		}
-		current.Next = l1.Next
-		l1.Next = current
-	}
-	t.Log(l1.Next)
-}
-
 func TestMe(t *testing.T) {
 	l1 := &ListNode{}
 	first := l1
@@ -64,21 +54,7 @@ func TestMe(t *testing.T) {
 	t.Log(l1)
 }
 
-func TestBuildTail(t *testing.T) {
-	var head = &ListNode{}
-	curr := head
-	for i := 0; i < 10; i++ {
-		new := &ListNode{
-			Val: i,
-		}
-
-		curr.Next, curr = new, new
-	}
-
-	t.Log(head.Next)
-}
-
-func TestBuildHead(t *testing.T) {
+func TestHead(t *testing.T) {
 	var head *ListNode
 	for i := 0; i < 10; i++ {
 		new := &ListNode{
@@ -87,13 +63,109 @@ func TestBuildHead(t *testing.T) {
 		new.Next = head
 		head = new
 	}
-
 	curr := head
 	var res *ListNode
+
 	for curr != nil {
 		next := curr.Next
 		curr.Next, res = res, curr
 		curr = next
 	}
 	t.Log(head)
+}
+
+func TestBuildTail(t *testing.T) {
+	var head = &ListNode{}
+	curr := head
+	for i := 0; i < 10; i++ {
+		new := &ListNode{
+			Val: i,
+		}
+		curr.Next, curr = new, new
+	}
+
+	t.Log(head.Next)
+}
+
+func TestBuildNode(t *testing.T) {
+	var head *ListNode
+	for i := 0; i < 10; i++ {
+		new := &ListNode{i, nil}
+		new.Next = head
+		head = new
+	}
+
+	t.Log(head)
+
+	var ln = &ListNode{}
+	current := ln
+	for i := 0; i < 10; i++ {
+		new := &ListNode{i, nil}
+		current.Next = new
+		current = new
+	}
+	t.Log(ln)
+
+	var reverseLn func(ln *ListNode) *ListNode
+	reverseLn = func(ln *ListNode) *ListNode {
+		if ln == nil || ln.Next == nil {
+			return ln
+		}
+		// ln 8->9; last:9->nil => ln 8->nil; last:9->8->nil
+		// ln: 7->8; last:9->8->nil => ln 7->nil;last:9->8->7->nil
+		last := reverseLn(ln.Next)
+		ln.Next.Next = ln
+		ln.Next = nil
+		return last
+	}
+	l := reverseLn(ln.Next)
+	t.Log(l)
+}
+
+func TestAddHead(t *testing.T) {
+	var head = &ListNode{}
+	// for i := 0; i < 10; i++ {
+	// 	tmp := &ListNode{i, nil}
+	// 	tmp.Next = head.Next
+	// 	head.Next = tmp
+	// }
+	for i := 0; i < 10; i++ {
+		head.Next = &ListNode{i, head.Next}
+	}
+	t.Log(head.Next)
+}
+
+// 极限头插法 构建链表
+func TestAddHead2(t *testing.T) {
+	// 头插法构建链表 9->8->7->6->5->4->3->2->1->0
+	var head *ListNode
+	for i := 0; i < 10; i++ {
+		head = &ListNode{i, head}
+	}
+
+	// 迭代法 反转
+	var new *ListNode
+	curr := head
+	for curr != nil {
+		next := curr.Next
+		new, curr.Next = curr, new
+		curr = next
+	}
+
+	t.Log(new)
+
+	// 后序 递归  反转链表 0—>(nil<-1<-2<-3...<-9) head=>0,ln=>9
+	var reverse func(head *ListNode) *ListNode
+	reverse = func(head *ListNode) *ListNode {
+		if head == nil || head.Next == nil {
+			return head
+		}
+		defer func() {
+			head.Next.Next, head.Next = head, nil
+		}()
+		return reverse(head.Next)
+	}
+
+	last := reverse(new)
+	t.Log(last)
 }

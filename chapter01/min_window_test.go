@@ -93,7 +93,7 @@ func TestCheckInClustion(t *testing.T) {
 
 		return false
 	}
-	t.Log(solution("ADESFE", "DEF"))
+	t.Log(solution("ADESFE", "DES"))
 }
 
 func TestFindArgus(t *testing.T) {

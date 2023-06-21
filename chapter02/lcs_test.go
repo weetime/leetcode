@@ -11,7 +11,7 @@ func TestLCS(t *testing.T) {
 		if x > y {
 			return x
 		}
-return y
+		return y
 	}
 	solution = func(str1, str2 string) int {
 		m, n := len(str1), len(str2)

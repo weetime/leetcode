@@ -7,7 +7,7 @@ func TestBinarySearch(t *testing.T) {
 	solution = func(num []int, target int) int {
 		left, right := 0, len(num)-1
 		for left <= right {
-			mid := left + (right-left)/2
+			mid := left + (right-left)>>1
 			if num[mid] == target {
 				return mid
 			} else if num[mid] > target {
@@ -74,23 +74,4 @@ func TestRightBound(t *testing.T) {
 
 	res := solution([]int{1, 2, 2, 3, 4, 5, 6, 7}, 2)
 	t.Log(res)
-}
-
-func TestBinarySearch2(t *testing.T) {
-	var solution func(nums []int, target int) int
-	solution = func(nums []int, target int) int {
-		left, right := 0, len(nums)-1
-		for left <= right {
-			mid := left + (right-left)/2
-			if nums[mid] > target {
-				right = mid - 1
-			} else if nums[target] < target {
-				left = mid + 1
-			} else if nums[mid] == target {
-				return mid
-			}
-		}
-		return -1
-	}
-	t.Log(solution([]int{1, 2, 3, 4, 5, 6, 7}, 2))
 }
