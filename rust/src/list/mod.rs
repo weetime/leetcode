@@ -1,2 +1,10 @@
+pub mod delete_duplicates;
+pub mod get_decimal_value;
+pub mod has_cycle;
+pub mod is_palindrome;
 pub mod list_node;
-pub mod reverse;
+pub mod merge_two_lists;
+pub mod middle_node;
+pub mod remove_elements;
+pub mod remove_nth_from_end;
+pub mod reverse_list;

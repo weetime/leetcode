@@ -32,6 +32,15 @@ func GetListNode() *ListNode {
 		tail.Next = current
 		tail = current
 	}
+	// tail.Next = &ListNode{
+	// 	Val: 2,
+	// 	Next: &ListNode{
+	// 		Val: 2,
+	// 		Next: &ListNode{
+	// 			Val: 3,
+	// 		},
+	// 	},
+	// }
 
 	return node.Next
 }

@@ -26,47 +26,47 @@ impl TreeNode {
     }
 }
 
-fn main() {
-    // pub fn max_path_sum(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-    //     let mut ans = i32::MIN;
+// fn main() {
+//     // pub fn max_path_sum(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+//     //     let mut ans = i32::MIN;
 
-    //     fn dfs(root: &Option<Rc<RefCell<TreeNode>>>, ans: &mut i32) -> i32 {
-    //         if root.is_none() {
-    //             return 0;
-    //         }
-    //         let node = root.as_ref().unwrap().borrow();
-    //         let l = std::cmp::max(0, dfs(&node.left, ans));
-    //         let r = std::cmp::max(0, dfs(&node.right, ans));
-    //         *ans = std::cmp::max(*ans, l + r + node.val);
-    //         return std::cmp::max(l, r) + root.as_ref().unwrap().borrow().val;
-    //     }
-    //     dfs(&root, &mut ans);
-    //     return ans;
-    // }
+//     //     fn dfs(root: &Option<Rc<RefCell<TreeNode>>>, ans: &mut i32) -> i32 {
+//     //         if root.is_none() {
+//     //             return 0;
+//     //         }
+//     //         let node = root.as_ref().unwrap().borrow();
+//     //         let l = std::cmp::max(0, dfs(&node.left, ans));
+//     //         let r = std::cmp::max(0, dfs(&node.right, ans));
+//     //         *ans = std::cmp::max(*ans, l + r + node.val);
+//     //         return std::cmp::max(l, r) + root.as_ref().unwrap().borrow().val;
+//     //     }
+//     //     dfs(&root, &mut ans);
+//     //     return ans;
+//     // }
 
-    // let res = max_path_sum(getTreeNode());
-    // println!("{:?}", res);
-}
+//     // let res = max_path_sum(getTreeNode());
+//     // println!("{:?}", res);
+// }
 
 #[test]
 fn test_124() {
-    // let mut ans: i32 = i32::MIN;
-    // fn dfs(root: &Option<Rc<RefCell<TreeNode>>>, ans: &mut i32) -> i32 {
-    //     match root {
-    //         None => return 0,
-    //         Some(x) => {
-    //             let node = &x.borrow();
-    //             let l = i32::max(0, dfs(&node.left, ans));
-    //             let r = i32::max(0, dfs(&node.right, ans));
-    //             *ans = i32::max(*ans, l + r + node.val);
-    //             return i32::max(l, r) + node.val;
-    //         }
-    //     }
-    // }
+    let mut ans: i32 = i32::MIN;
+    fn dfs(root: &Option<Rc<RefCell<TreeNode>>>, ans: &mut i32) -> i32 {
+        match root {
+            None => return 0,
+            Some(x) => {
+                let node = &x.borrow();
+                let l = i32::max(0, dfs(&node.left, ans));
+                let r = i32::max(0, dfs(&node.right, ans));
+                *ans = i32::max(*ans, l + r + node.val);
+                return i32::max(l, r) + node.val;
+            }
+        }
+    }
 
-    // let root = getTreeNode();
-    // dfs(&root, &mut ans);
-    // println!("{:?}", ans);
+    let root = getTreeNode();
+    dfs(&root, &mut ans);
+    println!("{:?}", ans);
 }
 
 fn getTreeNode() -> Option<Rc<RefCell<TreeNode>>> {
