@@ -1,4 +1,5 @@
 pub mod delete_duplicates;
+pub mod delete_duplicates2;
 pub mod get_decimal_value;
 pub mod has_cycle;
 pub mod is_palindrome;
@@ -8,3 +9,4 @@ pub mod middle_node;
 pub mod remove_elements;
 pub mod remove_nth_from_end;
 pub mod reverse_list;
+pub mod sort_list;

@@ -25,22 +25,28 @@ func TestAddTail(t *testing.T) {
 func GetListNode() *ListNode {
 	node := &ListNode{}
 	tail := node
-	for i := 0; i < 10; i++ {
-		current := &ListNode{
-			Val: i,
-		}
-		tail.Next = current
-		tail = current
-	}
-	// tail.Next = &ListNode{
-	// 	Val: 2,
-	// 	Next: &ListNode{
-	// 		Val: 2,
-	// 		Next: &ListNode{
-	// 			Val: 3,
-	// 		},
-	// 	},
+	// for i := 0; i < 2; i++ {
+	// 	current := &ListNode{
+	// 		Val: i,
+	// 	}
+	// 	tail.Next = current
+	// 	tail = current
 	// }
+	tail.Next = &ListNode{
+		Val: 3,
+		Next: &ListNode{
+			Val: 1,
+			Next: &ListNode{
+				Val: 2,
+				Next: &ListNode{
+					Val: 5,
+					Next: &ListNode{
+						Val: 4,
+					},
+				},
+			},
+		},
+	}
 
 	return node.Next
 }

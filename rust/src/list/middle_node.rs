@@ -31,3 +31,15 @@ pub fn helper(
         }
     }
 }
+
+pub fn middle_node3(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    let mut slow_ptr = head.as_ref();
+    let mut fast_ptr = head.as_ref();
+
+    while fast_ptr.is_some() && fast_ptr.as_ref()?.next.is_some() {
+        fast_ptr = fast_ptr?.next.as_ref()?.next.as_ref();
+        slow_ptr = slow_ptr?.next.as_ref();
+    }
+
+    slow_ptr.cloned()
+}

@@ -7,3 +7,4 @@
 - [876. 链表的中间结点](list/middle_node.rs)
 - [1290. 二进制链表转整数](list/get_decimal_value.rs)
 - [19. 删除链表的倒数第 N 个结点](list/remove_nth_from_end.rs)
+- [82. 删除排序链表中的重复元素 II](list/delete_duplicates2.rs)

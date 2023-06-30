@@ -23,6 +23,12 @@ fn test_delete_duplicates() {
 }
 
 #[test]
+fn test_delete_duplicates2() {
+    let res = listSolution::delete_duplicates2(ListNode::case03());
+    println!("{:?}", res);
+}
+
+#[test]
 fn test_has_cycle() {
     let res = listSolution::has_cycle(ListNode::case01());
     println!("{:?}", res);
@@ -71,5 +77,11 @@ fn get_decimal_value() {
 #[test]
 fn remove_nth_from_end() {
     let res = listSolution::remove_nth_from_end(ListNode::sample(), 1);
+    println!("{:?}", res);
+}
+
+#[test]
+fn sort_list() {
+    let res = listSolution::sort_list(ListNode::case03());
     println!("{:?}", res);
 }
