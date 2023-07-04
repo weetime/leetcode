@@ -85,3 +85,15 @@ fn sort_list() {
     let res = listSolution::sort_list(ListNode::case03());
     println!("{:?}", res);
 }
+
+#[test]
+fn insertion_sort_list() {
+    let res = listSolution::insertion_sort_list(ListNode::case03());
+    println!("{:?}", res);
+}
+
+#[test]
+fn odd_even_list() {
+    let res = listSolution::odd_even_list(ListNode::case03());
+    println!("{:?}", res);
+}

@@ -1,27 +1,4 @@
 use crate::list::list_node::ListNode;
-// 要求时间复杂度是O(nlogn)
-// pub fn sort_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-//     // let mut head = head;
-//     let mut slow_ptr = head.as_ref();
-//     let mut fast_ptr = head.as_ref();
-
-//     while fast_ptr.is_some() && fast_ptr.as_ref()?.next.is_some() {
-//         fast_ptr = fast_ptr?.next.as_ref()?.next.as_ref();
-//         slow_ptr = slow_ptr?.next.as_ref();
-//     }
-
-//     // let mid = slow_ptr.cloned();
-//     println!("{:?}", slow_ptr);
-//     slow_ptr.take();
-
-//     // println!("{:?}", mid);
-//     println!("{:?}", slow_ptr);
-//     println!("{:?}", head);
-//     None
-//     // 先找中间节点，分成左右两个链表
-
-//     // 再合并两个链表
-// }
 
 // 链表[3,1,2,5,4,6]
 // 自底向上 归并，时间复杂度O(nlogn),空间复杂度O(1)
@@ -117,10 +94,9 @@ pub fn cut(head: &mut Option<Box<ListNode>>, mut n: i32) -> Option<Box<ListNode>
             *head = ln.next.take(); // 这里的head 相当于全局变量 head也往后移动了
 
             *p = Some(ln);
-            p = &mut p.as_mut()?.next;
-            // while let Some(ln2) = p {
-            //     p = &mut ln2.next;
-            // }
+            while let Some(ln2) = p {
+                p = &mut ln2.next;
+            }
         }
         n -= 1;
     }

@@ -2,9 +2,11 @@ use crate::list::delete_duplicates::delete_duplicates;
 use crate::list::delete_duplicates2::delete_duplicates as delete_duplicates2;
 use crate::list::get_decimal_value::get_decimal_value;
 use crate::list::has_cycle::has_cycle;
+use crate::list::insertion_sort_list::insertion_sort_list;
 use crate::list::is_palindrome::is_palindrome;
 use crate::list::merge_two_lists::merge_two_lists;
 use crate::list::middle_node::middle_node;
+use crate::list::odd_even_list::odd_even_list;
 use crate::list::remove_elements::remove_elements;
 use crate::list::remove_nth_from_end::remove_nth_from_end;
 use crate::list::reverse_list::reverse_list;
@@ -63,7 +65,7 @@ impl ListNode {
                         val: 5,
                         next: Some(Box::new(ListNode {
                             val: 4,
-                            next: Some(Box::new(ListNode { val: 6, next: None })),
+                            next: None, // next: Some(Box::new(ListNode { val: 6, next: None })),
                         })),
                     })),
                 })),
@@ -118,5 +120,13 @@ impl Solution {
 
     pub fn sort_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         sort_list(head)
+    }
+
+    pub fn insertion_sort_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+        insertion_sort_list(head)
+    }
+
+    pub fn odd_even_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+        odd_even_list(head)
     }
 }

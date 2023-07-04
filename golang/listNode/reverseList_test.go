@@ -467,18 +467,6 @@ func TestSortList2(t *testing.T) {
 
 func TestSort2(t *testing.T) {
 	var sort func(head *ListNode) *ListNode
-	// var cut func(head *ListNode, n int) *ListNode
-	// cut = func(head *ListNode, n int) *ListNode {
-
-	// 	var p = &ListNode{Next: head}
-	// 	var new *ListNode
-	// 	if n > 0 && p != nil {
-	// 		p = p.Next
-	// 		n--
-	// 	}
-	// 	new, p.Next = p.Next, nil
-	// 	return new
-	// }
 	var merge func(head_a, head_b *ListNode) *ListNode
 	merge = func(head_a, head_b *ListNode) *ListNode {
 		var dummy = &ListNode{}
@@ -509,7 +497,7 @@ func TestSort2(t *testing.T) {
 		var size = 1
 		var res = &ListNode{Next: head}
 		for size < length {
-			p, curr := res, res.Next 
+			p, curr := res, res.Next
 			for curr != nil {
 				h1 := curr
 				for i := 1; i < size && curr.Next != nil; i++ {
@@ -534,7 +522,6 @@ func TestSort2(t *testing.T) {
 
 				curr = next
 			}
-
 			size *= 2
 		}
 
@@ -543,4 +530,174 @@ func TestSort2(t *testing.T) {
 
 	node := sort(GetListNode())
 	t.Log(node)
+}
+
+// [3,1,2,5,4]
+// 自底向上归并
+// step1 size=1切分[3],[1] [2],[5] [4] merge后[1,3] [2,5] [4] 得到的新的链表[1,3,2,5,4] //前2个已经排序完成
+// step2 size=2切分[1,3],[2,5] [4] merge后[1,2,3,5] [4] 得到新的链表[1,2,3,5,4] // 前4个已经排序完成
+// step3 size=4切分[1,2,3,5] [4] merge后[1,2,3,4,5] 排序完成
+func TestSortList3(t *testing.T) {
+	head := GetListNode()
+	var cut func(head *ListNode, n int) (*ListNode, *ListNode)
+	// 切分后 返回切分的节点 和 剩余的链表
+	cut = func(head *ListNode, n int) (*ListNode, *ListNode) {
+		var new *ListNode
+		dummy := &ListNode{Next: head}
+		p := dummy
+		for p.Next != nil && n > 0 {
+			p = p.Next
+			n--
+		}
+		new, p.Next = p.Next, nil
+		return dummy.Next, new
+	}
+
+	// 合并有序链表
+	var merge func(head_a, head_b *ListNode) *ListNode
+	merge = func(head_a, head_b *ListNode) *ListNode {
+		var dummy = &ListNode{}
+		new := dummy
+		for head_a != nil && head_b != nil {
+			if head_a.Val <= head_b.Val {
+				new.Next, head_a = head_a, head_a.Next
+			} else {
+				new.Next, head_b = head_b, head_b.Next
+			}
+			new = new.Next
+		}
+		if head_a != nil {
+			new.Next = head_a
+		} else {
+			new.Next = head_b
+		}
+
+		return dummy.Next
+	}
+
+	var sort func(head *ListNode) *ListNode
+
+	sort = func(head *ListNode) *ListNode {
+		if head == nil || head.Next == nil {
+			return head
+		}
+		var length = 0
+		var head_p = head
+		for head_p != nil {
+			head_p = head_p.Next
+			length++ // 统计链表长度
+		}
+		var size = 1
+
+		for size < length {
+			var res = &ListNode{}
+			p, curr := res, head
+			for curr != nil {
+				var left, right *ListNode
+				left, curr = cut(curr, size)
+				right, curr = cut(curr, size)
+				p.Next = merge(left, right)
+				for p.Next != nil { // 这里需要注意每次需要把p移动到队列结尾
+					p = p.Next
+				}
+			}
+			head = res.Next
+			size *= 2
+		}
+		return head
+	}
+
+	node := sort(head)
+	t.Log(node)
+}
+
+func TestInsertionSortList(t *testing.T) {
+	sort := func(head *ListNode) *ListNode {
+		if head == nil {
+			return head
+		}
+		dummy := &ListNode{Next: head}
+		lastSorted, curr := head, head.Next
+		for curr != nil {
+			if lastSorted.Val <= curr.Val {
+				lastSorted = lastSorted.Next
+			} else {
+				prev := dummy
+				for prev.Next.Val <= curr.Val {
+					prev = prev.Next
+				}
+				lastSorted.Next = curr.Next
+				curr.Next = prev.Next
+				prev.Next = curr
+			}
+
+			curr = lastSorted.Next
+		}
+		return dummy.Next
+	}
+
+	res := sort(GetListNode())
+	t.Log(res)
+}
+
+// 这个算法没有上面的好，如果是排序好的最后一个，可以先cache住，lastSorted，能提升速度
+// 如果有已经排好序的就不用排了，这个算法还需要遍历一遍
+func TestInsertionSortList2(t *testing.T) {
+	sort := func(head *ListNode) *ListNode {
+		if head == nil {
+			return head
+		}
+		dummy, curr := &ListNode{}, head
+		for curr != nil {
+			var next, prev *ListNode
+			next, curr.Next, prev = curr.Next, nil, dummy
+			for prev.Next != nil && prev.Next.Val <= curr.Val {
+				prev = prev.Next
+			}
+			curr.Next, prev.Next, curr = prev.Next, curr, next
+		}
+		return dummy.Next
+	}
+
+	res := sort(GetListNode())
+	t.Log(res)
+}
+
+func TestOddEvenList(t *testing.T) {
+	head := GetListNode()
+	curr := head
+	p1, p2 := &ListNode{}, &ListNode{}
+	h1, h2 := p1, p2
+	var n = 0
+	for curr != nil {
+		next := curr.Next
+		curr.Next = nil
+		if n%2 == 0 {
+			h1.Next = curr
+			h1 = h1.Next
+		} else {
+			h2.Next = curr
+			h2 = h2.Next
+		}
+		n++
+		curr = next
+	}
+	h1.Next = p2.Next
+	t.Log(p1.Next)
+}
+
+func TestOddEvenList2(t *testing.T) {
+	head := GetListNode()
+	odd := head
+	evenNode := head.Next
+	even := evenNode
+	for even != nil && even.Next != nil {
+		odd.Next = even.Next
+		odd = odd.Next
+
+		even.Next = odd.Next
+		even = even.Next
+	}
+	odd.Next = evenNode
+	t.Log(head)
 }
