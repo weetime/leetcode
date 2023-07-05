@@ -1,10 +1,14 @@
+pub mod add_two_numbers;
+pub mod add_two_numbers2;
 pub mod delete_duplicates;
 pub mod delete_duplicates2;
+pub mod delete_middle;
 pub mod get_decimal_value;
 pub mod has_cycle;
 pub mod insertion_sort_list;
 pub mod is_palindrome;
 pub mod list_node;
+pub mod merge_in_between;
 pub mod merge_two_lists;
 pub mod middle_node;
 pub mod odd_even_list;

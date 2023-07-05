@@ -701,3 +701,180 @@ func TestOddEvenList2(t *testing.T) {
 	odd.Next = evenNode
 	t.Log(head)
 }
+
+func TestMergeInBetween(t *testing.T) {
+	mergeInBetween := func(list1 *ListNode, a int, b int, list2 *ListNode) *ListNode {
+		head := list1
+		var n = 1
+		for list1 != nil {
+			if n >= a && n <= b {
+				prev := list1
+				for n >= a && n <= b {
+					list1 = list1.Next
+					n++
+				}
+				p2 := list2
+				prev.Next = list2
+				for p2.Next != nil {
+					p2 = p2.Next
+				}
+				p2.Next = list1.Next
+				// break
+			} else {
+				list1 = list1.Next
+				n++
+			}
+		}
+		return head
+	}
+
+	res := mergeInBetween(GetListNode(), 3, 3, GetListNode())
+	t.Log(res)
+}
+
+func TestMergeInBetween2(t *testing.T) {
+	mergeInBetween := func(list1 *ListNode, a int, b int, list2 *ListNode) *ListNode {
+		prevA := list1
+		for i := 0; i < a-1; i++ {
+			prevA = prevA.Next
+		}
+
+		prevB := prevA
+		for i := 0; i < b-a+2; i++ {
+			prevB = prevB.Next
+		}
+		prevA.Next = list2
+		for list2.Next != nil {
+			list2 = list2.Next
+		}
+		list2.Next = prevB
+		return list1
+	}
+
+	res := mergeInBetween(GetListNode(), 3, 3, GetListNode())
+	t.Log(res)
+}
+
+func TestDeleteMiddle(t *testing.T) {
+	deleteMiddle := func(head *ListNode) *ListNode {
+		if head == nil || head.Next == nil {
+			return nil
+		}
+
+		slow, fast := head, head
+		var prev *ListNode
+		for fast != nil && fast.Next != nil {
+			fast = fast.Next.Next
+			prev = slow
+			slow = slow.Next
+		}
+		prev.Next = slow.Next
+		return head
+	}
+	res := deleteMiddle(&ListNode{
+		Val: 1,
+		Next: &ListNode{
+			Val: 2,
+			Next: &ListNode{
+				Val: 3,
+				Next: &ListNode{
+					Val: 4,
+					// Next: &ListNode{
+					// 	Val: 5,
+					// },
+				},
+			},
+		},
+	})
+	t.Log(res)
+}
+
+func TestAddTwoNumbers(t *testing.T) {
+	var addTwoNumbers func(l1 *ListNode, l2 *ListNode) *ListNode
+	addTwoNumbers = func(l1, l2 *ListNode) *ListNode {
+		var carry int
+		var newListNode = &ListNode{}
+		new := newListNode
+		for l1 != nil || l2 != nil || carry > 0 {
+			n1, n2 := 0, 0
+			if l1 != nil {
+				n1 = l1.Val
+				l1 = l1.Next
+			}
+			if l2 != nil {
+				n2 = l2.Val
+				l2 = l2.Next
+			}
+			res := n1 + n2 + carry
+			res, carry = res%10, res/10
+			new.Next = &ListNode{Val: res}
+			new = new.Next
+		}
+
+		return newListNode.Next
+	}
+
+	l1, l2 := GetListNode(), &ListNode{Val: 9}
+	res := addTwoNumbers(l1, l2)
+	t.Log(res)
+}
+
+func TestMod(t *testing.T) {
+	t.Log(9/10, 9%10)
+}
+
+// func TestReverse3(t *testing.T) {
+// 	head := GetListNode()
+// 	var dfs func(head *ListNode) *ListNode
+// 	dfs = func(head *ListNode) *ListNode {
+// 		if head == nil || head.Next == nil {
+// 			return head
+// 		}
+// 		last := dfs(head.Next)
+// 		head.Next.Next = head
+// 		head.Next = nil
+// 		return last
+// 	}
+// 	res := dfs(head)
+// 	t.Log(res)
+// }
+
+func TestSum(t *testing.T) {
+	a := []int{}
+	a = append(a, 1)
+}
+
+// 头插法、尾插法构建链表
+func TestBuild(t *testing.T) {
+	arr := []int{1, 2, 3}
+	var head *ListNode
+	for _, val := range arr {
+		curr := &ListNode{Val: val, Next: head}
+		head = curr
+	}
+
+	t.Log(head)
+
+	var dummy = &ListNode{}
+	tail := dummy
+	for _, val := range arr {
+		curr := &ListNode{Val: val}
+		tail.Next = curr
+		tail = tail.Next
+	}
+
+	t.Log(dummy.Next)
+
+	var ln, ptr *ListNode
+	for _, val := range arr {
+		if ln == nil {
+			ln = &ListNode{Val: val}
+			ptr = ln
+		} else {
+			ptr.Next = &ListNode{Val: val}
+			ptr = ptr.Next
+		}
+	}
+
+	t.Log(ln)
+}

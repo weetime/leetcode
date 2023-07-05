@@ -97,3 +97,29 @@ fn odd_even_list() {
     let res = listSolution::odd_even_list(ListNode::case03());
     println!("{:?}", res);
 }
+
+#[test]
+fn merge_in_between() {
+    let res = listSolution::merge_in_between(ListNode::case03(), 2, 2, ListNode::case03());
+    println!("{:?}", res);
+}
+
+#[test]
+fn delete_middle() {
+    let res: Option<Box<ListNode>> = listSolution::delete_middle(ListNode::case03());
+    println!("{:?}", res);
+}
+
+#[test]
+fn add_two_numbers() {
+    let res: Option<Box<ListNode>> =
+        listSolution::add_two_numbers(ListNode::case03(), ListNode::case03());
+    println!("{:?}", res);
+}
+
+#[test]
+fn add_two_numbers2() {
+    let res: Option<Box<ListNode>> =
+        listSolution::add_two_numbers2(ListNode::case03(), ListNode::case03());
+    println!("{:?}", res);
+}

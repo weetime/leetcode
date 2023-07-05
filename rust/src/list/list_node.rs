@@ -1,9 +1,13 @@
+use crate::list::add_two_numbers::add_two_numbers;
+use crate::list::add_two_numbers2::add_two_numbers as add_two_numbers2;
 use crate::list::delete_duplicates::delete_duplicates;
 use crate::list::delete_duplicates2::delete_duplicates as delete_duplicates2;
+use crate::list::delete_middle::delete_middle;
 use crate::list::get_decimal_value::get_decimal_value;
 use crate::list::has_cycle::has_cycle;
 use crate::list::insertion_sort_list::insertion_sort_list;
 use crate::list::is_palindrome::is_palindrome;
+use crate::list::merge_in_between::merge_in_between;
 use crate::list::merge_two_lists::merge_two_lists;
 use crate::list::middle_node::middle_node;
 use crate::list::odd_even_list::odd_even_list;
@@ -20,7 +24,7 @@ pub struct ListNode {
 
 impl ListNode {
     #[inline]
-    fn new(val: i32) -> Self {
+    pub fn new(val: i32) -> Self {
         ListNode { next: None, val }
     }
     pub fn sample() -> Option<Box<ListNode>> {
@@ -128,5 +132,32 @@ impl Solution {
 
     pub fn odd_even_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         odd_even_list(head)
+    }
+
+    pub fn merge_in_between(
+        list1: Option<Box<ListNode>>,
+        a: i32,
+        b: i32,
+        list2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
+        merge_in_between(list1, a, b, list2)
+    }
+
+    pub fn delete_middle(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+        delete_middle(head)
+    }
+
+    pub fn add_two_numbers(
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
+        add_two_numbers(l1, l2)
+    }
+
+    pub fn add_two_numbers2(
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
+        add_two_numbers2(l1, l2)
     }
 }
