@@ -897,68 +897,6 @@ func TestSwapPairs(t *testing.T) {
 
 func TestRotateRight(t *testing.T) {
 	rotateRight := func(head *ListNode, k int) *ListNode {
-		for i := 0; i < k; i++ {
-			var prev *ListNode
-			ptr := head
-			for ptr != nil && ptr.Next != nil {
-				prev = ptr
-				ptr = ptr.Next
-
-			}
-			if prev != nil {
-				prev.Next = nil
-				ptr.Next = head
-				head = ptr
-			}
-		}
-
-		return head
-	}
-
-	res := rotateRight(GetListNode(), 20001)
-	t.Log(res)
-}
-
-func TestRotateRight2(t *testing.T) {
-	rotateRight := func(head *ListNode, k int) *ListNode {
-		ptr := head
-		var prev *ListNode
-		for i := 0; i <= k; i++ {
-			if ptr != nil && ptr.Next != nil {
-				ptr = ptr.Next
-			} else {
-				ptr = head
-			}
-		}
-
-		slow := head
-		if ptr == slow {
-			return head
-		}
-		for ptr != nil {
-			ptr = ptr.Next
-			slow = slow.Next
-		}
-
-		for slow.Next != nil {
-			prev = slow
-			slow = slow.Next
-		}
-
-		if prev != nil {
-			prev.Next = nil
-			slow.Next = head
-			head = slow
-		}
-		return head
-	}
-
-	res := rotateRight(GetListNode(), 5)
-	t.Log(res)
-}
-
-func TestRotateRight3(t *testing.T) {
-	rotateRight := func(head *ListNode, k int) *ListNode {
 		if head == nil || head.Next == nil {
 			return head
 		}
@@ -991,7 +929,7 @@ func TestRotateRight3(t *testing.T) {
 	t.Log(res)
 }
 
-func TestRotateRight4(t *testing.T) {
+func TestRotateRight1(t *testing.T) {
 	// 闭合为环 比较经典
 	rotateRight := func(head *ListNode, k int) *ListNode {
 		if head == nil || head.Next == nil {
@@ -1015,5 +953,48 @@ func TestRotateRight4(t *testing.T) {
 	}
 
 	res := rotateRight(GetListNode(), 1)
+	t.Log(res)
+}
+
+func TestRotateRight2(t *testing.T) {
+	rotateRight := func(head *ListNode, k int) *ListNode {
+		if head == nil || head.Next == nil {
+			return head
+		}
+		ptr := head
+		var length int = 1
+		for ptr.Next != nil {
+			length++
+			ptr = ptr.Next
+		}
+
+		k = k % length
+		if k == 0 {
+			return head
+		}
+		// 切割链表
+		fast, slow := head, head
+		for k >= 0 {
+			fast = fast.Next
+			k--
+		}
+
+		for fast != nil {
+			fast = fast.Next
+			slow = slow.Next
+		}
+
+		new_head := slow.Next
+		slow.Next = nil
+		tail := new_head
+		for tail.Next != nil {
+			tail = tail.Next
+		}
+
+		tail.Next = head
+		return new_head
+	}
+
+	res := rotateRight(GetListNode(), 2)
 	t.Log(res)
 }
