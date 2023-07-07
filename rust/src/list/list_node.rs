@@ -14,7 +14,9 @@ use crate::list::odd_even_list::odd_even_list;
 use crate::list::remove_elements::remove_elements;
 use crate::list::remove_nth_from_end::remove_nth_from_end;
 use crate::list::reverse_list::reverse_list;
+use crate::list::rotate_right::rotate_right;
 use crate::list::sort_list::sort_list;
+use crate::list::swap_pairs::swap_pairs;
 
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
@@ -159,5 +161,13 @@ impl Solution {
         l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
         add_two_numbers2(l1, l2)
+    }
+
+    pub fn swap_pairs(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+        swap_pairs(head)
+    }
+
+    pub fn rotate_right(head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
+        rotate_right(head, k)
     }
 }

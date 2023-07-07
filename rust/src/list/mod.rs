@@ -15,4 +15,6 @@ pub mod odd_even_list;
 pub mod remove_elements;
 pub mod remove_nth_from_end;
 pub mod reverse_list;
+pub mod rotate_right;
 pub mod sort_list;
+pub mod swap_pairs;

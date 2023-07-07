@@ -878,3 +878,142 @@ func TestBuild(t *testing.T) {
 
 	t.Log(ln)
 }
+
+func TestSwapPairs(t *testing.T) {
+	head := GetListNode()
+	dummy := &ListNode{Val: 0, Next: head}
+	temp := dummy
+	for temp.Next != nil && temp.Next.Next != nil {
+		node1 := temp.Next
+		node2 := temp.Next.Next
+		temp.Next = node2
+		node1.Next = node2.Next
+		node2.Next = node1
+		temp = node1
+	}
+
+	t.Log(dummy.Next)
+}
+
+func TestRotateRight(t *testing.T) {
+	rotateRight := func(head *ListNode, k int) *ListNode {
+		for i := 0; i < k; i++ {
+			var prev *ListNode
+			ptr := head
+			for ptr != nil && ptr.Next != nil {
+				prev = ptr
+				ptr = ptr.Next
+
+			}
+			if prev != nil {
+				prev.Next = nil
+				ptr.Next = head
+				head = ptr
+			}
+		}
+
+		return head
+	}
+
+	res := rotateRight(GetListNode(), 20001)
+	t.Log(res)
+}
+
+func TestRotateRight2(t *testing.T) {
+	rotateRight := func(head *ListNode, k int) *ListNode {
+		ptr := head
+		var prev *ListNode
+		for i := 0; i <= k; i++ {
+			if ptr != nil && ptr.Next != nil {
+				ptr = ptr.Next
+			} else {
+				ptr = head
+			}
+		}
+
+		slow := head
+		if ptr == slow {
+			return head
+		}
+		for ptr != nil {
+			ptr = ptr.Next
+			slow = slow.Next
+		}
+
+		for slow.Next != nil {
+			prev = slow
+			slow = slow.Next
+		}
+
+		if prev != nil {
+			prev.Next = nil
+			slow.Next = head
+			head = slow
+		}
+		return head
+	}
+
+	res := rotateRight(GetListNode(), 5)
+	t.Log(res)
+}
+
+func TestRotateRight3(t *testing.T) {
+	rotateRight := func(head *ListNode, k int) *ListNode {
+		if head == nil || head.Next == nil {
+			return head
+		}
+		ptr := head
+		var length int
+		for ptr != nil {
+			length++
+			ptr = ptr.Next
+		}
+
+		k = k % length
+
+		for i := 0; i < k; i++ {
+			var prev *ListNode
+			ptr := head
+			for ptr != nil && ptr.Next != nil {
+				prev = ptr
+				ptr = ptr.Next
+			}
+			if prev != nil {
+				prev.Next = nil
+				ptr.Next = head
+				head = ptr
+			}
+		}
+		return head
+	}
+
+	res := rotateRight(GetListNode(), 1)
+	t.Log(res)
+}
+
+func TestRotateRight4(t *testing.T) {
+	// 闭合为环 比较经典
+	rotateRight := func(head *ListNode, k int) *ListNode {
+		if head == nil || head.Next == nil {
+			return head
+		}
+		ptr := head
+		var length int = 1
+		for ptr.Next != nil {
+			length++
+			ptr = ptr.Next
+		}
+
+		k = length - (k % length)
+		ptr.Next = head
+		for i := 0; i < k; i++ {
+			ptr = ptr.Next
+		}
+		res := ptr.Next
+		ptr.Next = nil
+		return res
+	}
+
+	res := rotateRight(GetListNode(), 1)
+	t.Log(res)
+}

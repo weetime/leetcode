@@ -123,3 +123,15 @@ fn add_two_numbers2() {
         listSolution::add_two_numbers2(ListNode::case03(), ListNode::case03());
     println!("{:?}", res);
 }
+
+#[test]
+fn swap_pairs() {
+    let res: Option<Box<ListNode>> = listSolution::swap_pairs(ListNode::case03());
+    println!("{:?}", res);
+}
+
+#[test]
+fn rotate_right() {
+    let res: Option<Box<ListNode>> = listSolution::rotate_right(ListNode::case03(), 1);
+    println!("{:?}", res);
+}
