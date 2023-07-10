@@ -1,7 +1,11 @@
 pub mod list;
+pub mod tree;
 use list::list_node::ListNode;
 use list::list_node::Solution as listSolution;
-
+use std::cell::RefCell;
+use std::rc::Rc;
+use tree::tree::Solution as treeSolution;
+use tree::tree::TreeNode;
 fn main() {}
 
 #[test]
@@ -133,5 +137,12 @@ fn swap_pairs() {
 #[test]
 fn rotate_right() {
     let res: Option<Box<ListNode>> = listSolution::rotate_right(ListNode::case03(), 1);
+    println!("{:?}", res);
+}
+
+#[test]
+fn search_bst() {
+    let res: Option<Rc<RefCell<TreeNode>>> =
+        treeSolution::search_bst(TreeNode::from_array(vec![1, 2, 3, 4, 5, 6]), 1);
     println!("{:?}", res);
 }
