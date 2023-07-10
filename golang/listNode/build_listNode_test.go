@@ -42,6 +42,9 @@ func GetListNode() *ListNode {
 					Val: 5,
 					Next: &ListNode{
 						Val: 4,
+						Next: &ListNode{
+							Val: 1,
+						},
 					},
 				},
 			},

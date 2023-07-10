@@ -1,6 +1,7 @@
 package listnode
 
 import (
+	"math"
 	"testing"
 )
 
@@ -996,5 +997,98 @@ func TestRotateRight2(t *testing.T) {
 	}
 
 	res := rotateRight(GetListNode(), 2)
+	t.Log(res)
+}
+
+func TestPairSum(t *testing.T) {
+	pairSum := func(head *ListNode) int {
+		if head == nil {
+			return 0
+		}
+		max := math.MinInt
+		fast, slow := head.Next, head
+		for fast != nil && fast.Next != nil {
+			fast = fast.Next.Next
+			slow = slow.Next
+		}
+
+		var new_head *ListNode
+		temp := slow.Next
+		slow.Next = nil
+
+		for temp != nil {
+			next := temp.Next
+			temp.Next = new_head
+			new_head = temp
+			temp = next
+		}
+
+		for head != nil {
+			if max < head.Val+new_head.Val {
+				max = head.Val + new_head.Val
+			}
+			new_head = new_head.Next
+			head = head.Next
+		}
+		return max
+	}
+
+	head := GetListNode()
+	res := pairSum(head)
+	t.Log(res)
+}
+
+func TestPairSum2(t *testing.T) {
+	pairSum := func(head *ListNode) int {
+		if head == nil {
+			return 0
+		}
+		max := math.MinInt
+		arr := []int{}
+
+		for head != nil {
+			arr = append(arr, head.Val)
+			head = head.Next
+		}
+		j := len(arr) - 1
+		for i := 0; i < j; i++ {
+			if max < arr[i]+arr[j] {
+				max = arr[i] + arr[j]
+			}
+			j--
+		}
+		return max
+	}
+
+	head := GetListNode()
+	res := pairSum(head)
+	t.Log(res)
+}
+
+func TestPartition(t *testing.T) {
+	partition := func(head *ListNode, n int) *ListNode {
+		if head == nil || head.Next == nil {
+			return head
+		}
+		small, large := &ListNode{}, &ListNode{}
+		s, l := small, large
+		for head != nil {
+			next := head.Next
+			head.Next = nil
+			if head.Val < n {
+				s.Next = head
+				s = s.Next
+			} else {
+				l.Next = head
+				l = l.Next
+			}
+
+			head = next
+		}
+		s.Next = large.Next
+		return small.Next
+	}
+
+	res := partition(GetListNode(), 4)
 	t.Log(res)
 }
