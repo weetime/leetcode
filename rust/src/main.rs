@@ -4,139 +4,140 @@ use list::list_node::ListNode;
 use list::list_node::Solution as listSolution;
 use std::cell::RefCell;
 use std::rc::Rc;
+use std::vec;
 use tree::tree::Solution as treeSolution;
 use tree::tree::TreeNode;
 fn main() {}
 
 #[test]
 fn test_reverse_list() {
-    let res = listSolution::reverse_list(ListNode::sample());
+    let res = listSolution::reverse_list(ListNode::from_array_by_head(vec![1, 2, 3]));
     println!("{:?}", res);
 }
 
 #[test]
 fn test_merge_two_lists() {
-    let res = listSolution::merge_two_lists(ListNode::sample(), ListNode::sample());
+    let res = listSolution::merge_two_lists(
+        ListNode::from_array_by_head(vec![1, 4, 7]),
+        ListNode::from_array_by_head(vec![2, 5, 8]),
+    );
     println!("{:?}", res);
 }
 
 #[test]
 fn test_delete_duplicates() {
-    let res = listSolution::delete_duplicates(ListNode::case01());
+    let res = listSolution::delete_duplicates(ListNode::from_array_by_head(vec![1, 2, 2, 3, 3, 4]));
     println!("{:?}", res);
 }
 
 #[test]
 fn test_delete_duplicates2() {
-    let res = listSolution::delete_duplicates2(ListNode::case03());
+    let res =
+        listSolution::delete_duplicates2(ListNode::from_array_by_head(vec![1, 2, 2, 3, 3, 4]));
     println!("{:?}", res);
 }
 
 #[test]
 fn test_has_cycle() {
-    let res = listSolution::has_cycle(ListNode::case01());
+    let res = listSolution::has_cycle(ListNode::from_array_by_head(vec![1, 2, 3]));
     println!("{:?}", res);
 }
 
 #[test]
-fn test_ref() {
-    let node = ListNode { val: 1, next: None };
-    let a = Some(Box::new(node));
-    let b = a.as_ref();
-    let c = a.as_ref();
-    assert_eq!(b, c);
-    let b = a.as_ref().unwrap().as_ref();
-    let c = a.as_ref().unwrap().as_ref();
-    println!("{:p}, {:p}", b, c)
-}
-
-#[test]
 fn test_remove_elements() {
-    let res = listSolution::remove_elements(ListNode::case01(), 1);
+    let res = listSolution::remove_elements(ListNode::from_array_by_head(vec![1, 1, 2, 3]), 1);
     println!("{:?}", res);
 }
 
 #[test]
 fn test_is_palindrome() {
-    let res = listSolution::is_palindrome(ListNode::case02());
+    let res = listSolution::is_palindrome(ListNode::from_array_by_head(vec![1, 2, 3, 2, 1]));
     println!("{:?}", res);
 }
 
 #[test]
 fn middle_node() {
-    let res = listSolution::middle_node(ListNode::sample());
-    println!("{:?}", res);
-    let res = listSolution::middle_node(ListNode::case01());
-    println!("{:?}", res);
-    let res = listSolution::middle_node(ListNode::case02());
+    let res = listSolution::middle_node(ListNode::from_array_by_head(vec![1, 2, 3, 4]));
     println!("{:?}", res);
 }
 
 #[test]
 fn get_decimal_value() {
-    let res = listSolution::get_decimal_value(ListNode::sample());
+    let res = listSolution::get_decimal_value(ListNode::from_array_by_head(vec![1, 0, 1]));
     println!("{:?}", res);
 }
 
 #[test]
 fn remove_nth_from_end() {
-    let res = listSolution::remove_nth_from_end(ListNode::sample(), 1);
+    let res = listSolution::remove_nth_from_end(ListNode::from_array_by_head(vec![1, 2, 3, 4]), 1);
     println!("{:?}", res);
 }
 
 #[test]
 fn sort_list() {
-    let res = listSolution::sort_list(ListNode::case03());
+    let res = listSolution::sort_list(ListNode::from_array_by_head(vec![5, 4, 3, 2, 1]));
     println!("{:?}", res);
 }
 
 #[test]
 fn insertion_sort_list() {
-    let res = listSolution::insertion_sort_list(ListNode::case03());
+    let res = listSolution::insertion_sort_list(ListNode::from_array_by_head(vec![5, 4, 3, 2, 1]));
     println!("{:?}", res);
 }
 
 #[test]
 fn odd_even_list() {
-    let res = listSolution::odd_even_list(ListNode::case03());
+    let res = listSolution::odd_even_list(ListNode::from_array_by_head(vec![1, 2, 3, 4, 5, 6]));
     println!("{:?}", res);
 }
 
 #[test]
 fn merge_in_between() {
-    let res = listSolution::merge_in_between(ListNode::case03(), 2, 2, ListNode::case03());
+    let res = listSolution::merge_in_between(
+        ListNode::from_array_by_head(vec![1, 2, 3, 4, 5, 6]),
+        2,
+        2,
+        ListNode::from_array_by_head(vec![7, 8, 9]),
+    );
     println!("{:?}", res);
 }
 
 #[test]
 fn delete_middle() {
-    let res: Option<Box<ListNode>> = listSolution::delete_middle(ListNode::case03());
+    let res: Option<Box<ListNode>> =
+        listSolution::delete_middle(ListNode::from_array_by_head(vec![1, 2, 3, 4]));
     println!("{:?}", res);
 }
 
 #[test]
 fn add_two_numbers() {
-    let res: Option<Box<ListNode>> =
-        listSolution::add_two_numbers(ListNode::case03(), ListNode::case03());
+    let res: Option<Box<ListNode>> = listSolution::add_two_numbers(
+        ListNode::from_array_by_head(vec![7, 5, 6]),
+        ListNode::from_array_by_head(vec![7, 5, 6]),
+    );
     println!("{:?}", res);
 }
 
 #[test]
 fn add_two_numbers2() {
-    let res: Option<Box<ListNode>> =
-        listSolution::add_two_numbers2(ListNode::case03(), ListNode::case03());
+    let res: Option<Box<ListNode>> = listSolution::add_two_numbers2(
+        ListNode::from_array_by_head(vec![7, 5, 6]),
+        ListNode::from_array_by_head(vec![7, 5, 6]),
+    );
     println!("{:?}", res);
 }
 
 #[test]
 fn swap_pairs() {
-    let res: Option<Box<ListNode>> = listSolution::swap_pairs(ListNode::case03());
+    let res: Option<Box<ListNode>> =
+        listSolution::swap_pairs(ListNode::from_array_by_head(vec![1, 2, 3, 4, 5, 6]));
     println!("{:?}", res);
 }
 
 #[test]
 fn rotate_right() {
-    let res: Option<Box<ListNode>> = listSolution::rotate_right(ListNode::case03(), 1);
+    let res: Option<Box<ListNode>> =
+        listSolution::rotate_right(ListNode::from_array_by_head(vec![1, 2, 3, 4, 5]), 1);
     println!("{:?}", res);
 }
 
@@ -148,7 +149,8 @@ fn pair_sum() {
 
 #[test]
 fn partition() {
-    let res: Option<Box<ListNode>> = listSolution::partition(ListNode::case03(), 1);
+    let res: Option<Box<ListNode>> =
+        listSolution::partition(ListNode::from_array_by_head(vec![3, 1, 2, 5, 4]), 1);
     println!("{:?}", res);
 }
 // -------------------- tree --------------------------------

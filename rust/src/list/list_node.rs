@@ -31,56 +31,8 @@ impl ListNode {
     pub fn new(val: i32) -> Self {
         ListNode { next: None, val }
     }
-    pub fn sample() -> Option<Box<ListNode>> {
-        let mut node1: ListNode = ListNode::new(1);
-        let mut node2: ListNode = ListNode::new(2);
-        let node3: ListNode = ListNode::new(3);
-        node2.next = Some(Box::new(node3));
-        node1.next = Some(Box::new(node2));
-        return Some(Box::new(node1));
-    }
 
-    pub fn case01() -> Option<Box<ListNode>> {
-        let mut node1: ListNode = ListNode::new(1);
-        let mut node2: ListNode = ListNode::new(2);
-        let mut node3: ListNode = ListNode::new(3);
-        let node4: ListNode = ListNode::new(4);
-        node3.next = Some(Box::new(node4));
-        node2.next = Some(Box::new(node3));
-        node1.next = Some(Box::new(node2));
-        return Some(Box::new(node1));
-    }
-
-    pub fn case02() -> Option<Box<ListNode>> {
-        let mut node1: ListNode = ListNode::new(1);
-        let mut node2: ListNode = ListNode::new(1);
-        let mut node3: ListNode = ListNode::new(2);
-        let node4: ListNode = ListNode::new(3);
-        node3.next = Some(Box::new(node4));
-        node2.next = Some(Box::new(node3));
-        node1.next = Some(Box::new(node2));
-        return Some(Box::new(node1));
-    }
-
-    pub fn case03() -> Option<Box<ListNode>> {
-        return Some(Box::new(ListNode {
-            val: 3,
-            next: Some(Box::new(ListNode {
-                val: 1,
-                next: Some(Box::new(ListNode {
-                    val: 2,
-                    next: Some(Box::new(ListNode {
-                        val: 5,
-                        next: Some(Box::new(ListNode {
-                            val: 4,
-                            next: None, // next: Some(Box::new(ListNode { val: 6, next: None })),
-                        })),
-                    })),
-                })),
-            })),
-        }));
-    }
-
+    // 头插法构建链表 [1,2,3,4,5] => 1->2->3->4->5
     pub fn from_array_by_head(arr: Vec<i32>) -> Option<Box<ListNode>> {
         let mut arr = arr;
         let mut head = None;
@@ -92,6 +44,7 @@ impl ListNode {
         head
     }
 
+    // 尾插法构建链表 [1,2,3,4,5] => 1->2->3->4->5
     pub fn from_array_by_tail(arr: Vec<i32>) -> Option<Box<ListNode>> {
         let mut dummy = ListNode { val: 0, next: None };
         let mut tail = &mut dummy;
