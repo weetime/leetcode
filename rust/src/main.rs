@@ -141,6 +141,18 @@ fn rotate_right() {
 }
 
 #[test]
+fn pair_sum() {
+    let res: i32 = listSolution::pair_sum(ListNode::from_array_by_tail(vec![1, 2, 3, 4, 5, 6]));
+    println!("{:?}", res);
+}
+
+#[test]
+fn partition() {
+    let res: Option<Box<ListNode>> = listSolution::partition(ListNode::case03(), 1);
+    println!("{:?}", res);
+}
+// -------------------- tree --------------------------------
+#[test]
 fn search_bst() {
     let res: Option<Rc<RefCell<TreeNode>>> =
         treeSolution::search_bst(TreeNode::from_array(vec![1, 2, 3, 4, 5, 6]), 1);

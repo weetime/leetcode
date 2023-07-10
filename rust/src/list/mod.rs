@@ -12,6 +12,8 @@ pub mod merge_in_between;
 pub mod merge_two_lists;
 pub mod middle_node;
 pub mod odd_even_list;
+pub mod pair_sum;
+pub mod partition;
 pub mod remove_elements;
 pub mod remove_nth_from_end;
 pub mod reverse_list;

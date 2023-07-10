@@ -11,6 +11,8 @@ use crate::list::merge_in_between::merge_in_between;
 use crate::list::merge_two_lists::merge_two_lists;
 use crate::list::middle_node::middle_node;
 use crate::list::odd_even_list::odd_even_list;
+use crate::list::pair_sum::pair_sum;
+use crate::list::partition::partition;
 use crate::list::remove_elements::remove_elements;
 use crate::list::remove_nth_from_end::remove_nth_from_end;
 use crate::list::reverse_list::reverse_list;
@@ -77,6 +79,28 @@ impl ListNode {
                 })),
             })),
         }));
+    }
+
+    pub fn from_array_by_head(arr: Vec<i32>) -> Option<Box<ListNode>> {
+        let mut arr = arr;
+        let mut head = None;
+        while let Some(x) = arr.pop() {
+            let mut node = Box::new(Self::new(x));
+            node.next = head;
+            head = Some(node);
+        }
+        head
+    }
+
+    pub fn from_array_by_tail(arr: Vec<i32>) -> Option<Box<ListNode>> {
+        let mut dummy = ListNode { val: 0, next: None };
+        let mut tail = &mut dummy;
+        for x in arr.iter() {
+            let node = Box::new(ListNode::new(*x));
+            tail.next = Some(node);
+            tail = tail.next.as_mut().unwrap().as_mut();
+        }
+        dummy.next
     }
 }
 
@@ -169,5 +193,13 @@ impl Solution {
 
     pub fn rotate_right(head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
         rotate_right(head, k)
+    }
+
+    pub fn partition(head: Option<Box<ListNode>>, x: i32) -> Option<Box<ListNode>> {
+        partition(head, x)
+    }
+
+    pub fn pair_sum(head: Option<Box<ListNode>>) -> i32 {
+        pair_sum(head)
     }
 }
