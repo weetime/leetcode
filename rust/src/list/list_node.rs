@@ -1,14 +1,12 @@
 use crate::list::add_two_numbers::add_two_numbers;
 use crate::list::add_two_numbers2::add_two_numbers as add_two_numbers2;
-use crate::list::delete_duplicates::delete_duplicates;
-use crate::list::delete_duplicates2::delete_duplicates as delete_duplicates2;
 use crate::list::delete_middle::delete_middle;
 use crate::list::get_decimal_value::get_decimal_value;
 use crate::list::has_cycle::has_cycle;
 use crate::list::insertion_sort_list::insertion_sort_list;
 use crate::list::is_palindrome::is_palindrome;
 use crate::list::merge_in_between::merge_in_between;
-use crate::list::merge_two_lists::merge_two_lists;
+// use crate::list::merge_two_lists::merge_two_lists;
 use crate::list::middle_node::middle_node;
 use crate::list::odd_even_list::odd_even_list;
 use crate::list::pair_sum::pair_sum;
@@ -26,6 +24,17 @@ pub struct ListNode {
     pub next: Option<Box<ListNode>>,
 }
 
+/**
+ * 内置常见的链表操作
+ * 1.构建链表的两种形式，头插法和尾插法
+ * 2.取链表的长度
+ * 3.找中点
+ * 4.反转链表
+ * 5.合并两个链表
+ * 6.按索引删除节点
+ * 7.按值删除节点
+ * 8.排序
+ */
 impl ListNode {
     #[inline]
     pub fn new(val: i32) -> Self {
@@ -62,16 +71,6 @@ impl Solution {
     pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         reverse_list(head)
     }
-    pub fn merge_two_lists(
-        list1: Option<Box<ListNode>>,
-        list2: Option<Box<ListNode>>,
-    ) -> Option<Box<ListNode>> {
-        merge_two_lists(list1, list2)
-    }
-
-    pub fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        delete_duplicates(head)
-    }
 
     pub fn has_cycle(head: Option<Box<ListNode>>) -> bool {
         has_cycle(head)
@@ -95,10 +94,6 @@ impl Solution {
 
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
         remove_nth_from_end(head, n)
-    }
-
-    pub fn delete_duplicates2(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        delete_duplicates2(head)
     }
 
     pub fn sort_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {

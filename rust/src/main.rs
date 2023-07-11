@@ -7,33 +7,12 @@ use std::rc::Rc;
 use std::vec;
 use tree::tree::Solution as treeSolution;
 use tree::tree::TreeNode;
+
 fn main() {}
 
 #[test]
 fn test_reverse_list() {
     let res = listSolution::reverse_list(ListNode::from_array_by_head(vec![1, 2, 3]));
-    println!("{:?}", res);
-}
-
-#[test]
-fn test_merge_two_lists() {
-    let res = listSolution::merge_two_lists(
-        ListNode::from_array_by_head(vec![1, 4, 7]),
-        ListNode::from_array_by_head(vec![2, 5, 8]),
-    );
-    println!("{:?}", res);
-}
-
-#[test]
-fn test_delete_duplicates() {
-    let res = listSolution::delete_duplicates(ListNode::from_array_by_head(vec![1, 2, 2, 3, 3, 4]));
-    println!("{:?}", res);
-}
-
-#[test]
-fn test_delete_duplicates2() {
-    let res =
-        listSolution::delete_duplicates2(ListNode::from_array_by_head(vec![1, 2, 2, 3, 3, 4]));
     println!("{:?}", res);
 }
 
