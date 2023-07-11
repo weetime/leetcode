@@ -11,7 +11,6 @@ use crate::list::middle_node::middle_node;
 use crate::list::odd_even_list::odd_even_list;
 use crate::list::pair_sum::pair_sum;
 use crate::list::partition::partition;
-use crate::list::remove_elements::remove_elements;
 use crate::list::remove_nth_from_end::remove_nth_from_end;
 use crate::list::reverse_list::reverse_list;
 use crate::list::rotate_right::rotate_right;
@@ -74,10 +73,6 @@ impl Solution {
 
     pub fn has_cycle(head: Option<Box<ListNode>>) -> bool {
         has_cycle(head)
-    }
-
-    pub fn remove_elements(head: Option<Box<ListNode>>, val: i32) -> Option<Box<ListNode>> {
-        remove_elements(head, val)
     }
 
     pub fn is_palindrome(head: Option<Box<ListNode>>) -> bool {

@@ -23,12 +23,6 @@ fn test_has_cycle() {
 }
 
 #[test]
-fn test_remove_elements() {
-    let res = listSolution::remove_elements(ListNode::from_array_by_head(vec![1, 1, 2, 3]), 1);
-    println!("{:?}", res);
-}
-
-#[test]
 fn test_is_palindrome() {
     let res = listSolution::is_palindrome(ListNode::from_array_by_head(vec![1, 2, 3, 2, 1]));
     println!("{:?}", res);
