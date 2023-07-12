@@ -30,7 +30,7 @@ impl Solution {
         dummy.next
     }
 
-    // dfs 方式 其实是候选遍历
+    // dfs 方式 其实是后序遍历
     pub fn remove_elements1(head: Option<Box<ListNode>>, val: i32) -> Option<Box<ListNode>> {
         match head {
             Some(mut head) => {

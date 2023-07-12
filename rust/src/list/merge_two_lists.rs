@@ -2,7 +2,7 @@ use crate::list::list_node::ListNode;
 
 pub struct Solution {}
 impl Solution {
-    // 合并两个有序链表变成一个新的有序链表
+    // 合并两个有序链表变成一个新的有序链表，非常重要和常规的一个算法
     pub fn merge_two_lists(
         list1: Option<Box<ListNode>>,
         list2: Option<Box<ListNode>>,

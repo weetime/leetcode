@@ -2,7 +2,7 @@
 - [21. 合并两个有序链表](list/merge_two_lists.rs)
 - [83. 删除排序链表中的重复元素](list/delete_duplicates.rs)
 - [203. 移除链表元素](list/remove_elements.rs)
-- [206. 反转链表](list/reverse.rs)
+- [206. 反转链表](list/reverse_list.rs)
 - [234. 回文链表](list/is_palindrome.rs)
 - [876. 链表的中间结点](list/middle_node.rs)
 - [1290. 二进制链表转整数](list/get_decimal_value.rs)

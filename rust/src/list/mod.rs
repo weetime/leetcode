@@ -4,7 +4,6 @@ pub mod delete_duplicates;
 pub mod delete_duplicates2;
 pub mod delete_middle;
 pub mod get_decimal_value;
-pub mod has_cycle;
 pub mod insertion_sort_list;
 pub mod is_palindrome;
 pub mod list_node;

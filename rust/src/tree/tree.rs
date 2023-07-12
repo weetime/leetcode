@@ -1,8 +1,6 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
-use crate::tree::search_bst::search_bst;
-
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
@@ -37,15 +35,5 @@ impl TreeNode {
         t.right = Self::to_bst(arr.to_vec(), m + 1, e);
 
         Some(Rc::new(RefCell::new(t)))
-    }
-}
-
-pub struct Solution {}
-impl Solution {
-    pub fn search_bst(
-        root: Option<Rc<RefCell<TreeNode>>>,
-        val: i32,
-    ) -> Option<Rc<RefCell<TreeNode>>> {
-        search_bst(root, val)
     }
 }
