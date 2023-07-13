@@ -7,39 +7,27 @@ impl Solution {
      * 这种写法就是代码看起来不优雅
      * delete_duplicates 和 delete_duplicates1 没有区别，只是为了练习所有权
      */
+    // 另外的一个解题思路就是重建一个新的链表，只保留值不重复的节点
     pub fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         if head.is_none() {
             return head;
         }
-        let mut dummy = Some(Box::new(ListNode { val: 0, next: head }));
-        let mut curr = &mut dummy;
-        while curr.as_ref().unwrap().next.as_ref().is_some()
-            && curr.as_ref().unwrap().next.as_ref().unwrap().next.is_some()
-        {
-            if curr.as_ref().unwrap().next.as_ref().unwrap().val
-                == curr
-                    .as_ref()
-                    .unwrap()
-                    .next
-                    .as_ref()
-                    .unwrap()
-                    .next
-                    .as_ref()
-                    .unwrap()
-                    .val
+        let mut dummy = ListNode::new(0);
+        dummy.next = head;
+        let mut ptr = &mut dummy;
+        while ptr.next.is_some() && ptr.next.as_ref().unwrap().next.is_some() {
+            if ptr.next.as_ref().unwrap().val
+                == ptr.next.as_ref().unwrap().next.as_ref().unwrap().val
             {
-                let val = curr.as_ref().unwrap().next.as_ref().unwrap().val;
-                while curr.as_ref().unwrap().next.is_some()
-                    && curr.as_ref().unwrap().next.as_ref().unwrap().val == val
-                {
-                    curr.as_mut().unwrap().next = curr.as_mut().unwrap().next.take().unwrap().next;
+                let val = ptr.next.as_ref().unwrap().val;
+                while ptr.next.is_some() && ptr.next.as_ref().unwrap().val == val {
+                    ptr.next = ptr.next.as_mut().unwrap().next.take();
                 }
             } else {
-                curr = &mut curr.as_mut().unwrap().next;
+                ptr = ptr.next.as_mut().unwrap().as_mut();
             }
         }
-
-        dummy.unwrap().next
+        dummy.next
     }
 
     pub fn delete_duplicates1(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {

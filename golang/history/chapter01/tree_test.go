@@ -1,7 +1,7 @@
 package chapter01
 
 import (
-	"leetcode/problems/tree"
+	"leetcode/golang/history/tree"
 	"testing"
 )
 

@@ -28,4 +28,4 @@
 - [2130. 链表最大孪生和](list/pair_sum.rs)
 
 ### 剑指 Offer系列
-- [剑指 Offer 06. 从尾到头打印链表](list/reverse_print.rs)
+- [剑指 Offer 06. 从尾到头打印链表](list/reversePrint_test.go)

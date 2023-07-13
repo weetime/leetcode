@@ -1,3 +1,3 @@
-module leetcode/problems
+module leetcode/golang
 
 go 1.20

@@ -97,9 +97,10 @@ impl Solution {
                 *head = ln.next.take(); // 这里的head 相当于全局变量 head也往后移动了
 
                 *p = Some(ln);
-                while let Some(ln2) = p {
-                    p = &mut ln2.next;
-                }
+                p = &mut p.as_mut().unwrap().next;
+                // while let Some(ln2) = p {
+                //     p = &mut ln2.next;
+                // }
             }
             n -= 1;
         }

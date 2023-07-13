@@ -1,3 +1,4 @@
+pub mod _no1;
 pub mod add_two_numbers;
 pub mod add_two_numbers2;
 pub mod delete_duplicates;
@@ -16,6 +17,7 @@ pub mod partition;
 pub mod remove_elements;
 pub mod remove_nth_from_end;
 pub mod reverse_list;
+pub mod reverse_print;
 pub mod rotate_right;
 pub mod sort_list;
 pub mod swap_pairs;
