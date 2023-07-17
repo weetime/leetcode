@@ -9,22 +9,12 @@ impl Solution {
         let mut dummy = ListNode { val: 0, next: head };
         let mut prev = &mut dummy;
         while let Some(mut node) = prev.next.take() {
-            match node.val {
-                x if x == val => {
-                    prev.next = node.next.take();
-                }
-                _ => {
-                    prev.next = Some(node);
-                    prev = prev.next.as_mut().unwrap();
-                }
+            if node.val == val {
+                prev.next = node.next.take();
+            } else {
+                prev.next = Some(node);
+                prev = prev.next.as_mut().unwrap();
             }
-            // match 等价于 if 的写法
-            // if node.val == val {
-            //     prev.next = node.next.take();
-            // } else {
-            //     prev.next = Some(node);
-            //     prev = prev.next.as_mut().unwrap();
-            // }
         }
 
         dummy.next
@@ -53,21 +43,20 @@ impl Solution {
         if head.is_none() {
             return head;
         }
-        let mut dummy = Some(Box::new(ListNode { val: 0, next: head }));
+        let mut dummy = ListNode { val: 0, next: head };
         let mut prev = &mut dummy;
-        while prev.as_ref().unwrap().next.is_some() {
-            match prev.as_ref().unwrap().next.as_ref().unwrap().val {
+        while let Some(node) = prev.next.as_mut() {
+            match node.val {
                 x if x == val => {
-                    prev.as_mut().unwrap().next =
-                        prev.as_mut().unwrap().next.as_mut().unwrap().next.take();
+                    prev.next = node.next.take();
                 }
                 _ => {
-                    prev = &mut prev.as_mut().unwrap().next;
+                    prev = prev.next.as_mut().unwrap();
                 }
             }
         }
 
-        dummy.unwrap().next
+        dummy.next
     }
 }
 

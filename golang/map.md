@@ -29,3 +29,7 @@
 
 ### 剑指 Offer系列
 - [剑指 Offer 06. 从尾到头打印链表](list/reversePrint_test.go)
+- [剑指 Offer 35. 复杂链表的复制](list/copyRandomList_test.go)
+- [剑指 Offer 18. 删除链表的节点](list/deleteNode_test.go)
+- [剑指 Offer 22. 链表中倒数第k个节点](list/getKthFromEnd_test.go)
+- [剑指 Offer 25. 合并两个排序的链表](list/mergeTwoLists_test.go)
