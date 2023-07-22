@@ -33,3 +33,12 @@
 - [剑指 Offer 18. 删除链表的节点](list/deleteNode_test.go)
 - [剑指 Offer 22. 链表中倒数第k个节点](list/getKthFromEnd_test.go)
 - [剑指 Offer 25. 合并两个排序的链表](list/mergeTwoLists_test.go)
+- [剑指 Offer 52. 两个链表的第一个公共节点](list/getIntersectionNode_test.go)
+- [剑指 Offer 21. 调整数组顺序使奇数位于偶数前面](list/exchange_test.go)
+- [剑指 Offer 57. 和为s的两个数字](array/twoSum_test.go)
+- [剑指 Offer 58 - I. 翻转单词顺序](array/reverseWords_test.go)
+- [剑指 Offer 09. 用两个栈实现队列](queue/CQueue_test.go)
+- [剑指 Offer 30. 包含min函数的栈](stack/MinStack_test.go)
+- [剑指 Offer 59 - II. 队列的最大值](queue/MaxQueue_test.go)
+
+

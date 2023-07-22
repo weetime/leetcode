@@ -46,7 +46,7 @@ func TestLeftBound(t *testing.T) {
 		return left
 	}
 
-	res := solution([]int{1, 2, 2, 3, 4, 5, 6, 7}, 2)
+	res := solution([]int{1, 2, 2, 4, 4, 5, 6, 7}, 2)
 	t.Log(res)
 }
 
